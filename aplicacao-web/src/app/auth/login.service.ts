@@ -54,5 +54,9 @@ export class LoginService {
     return this.jwtDecode() as Usuario;
   }
 
+  getUsuarios(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(`${this.API}/usuarios`);
+  }
+
 
 }

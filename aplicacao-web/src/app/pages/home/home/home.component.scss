@@ -1,0 +1,30 @@
+.parent {
+    display: grid;
+    grid-template-columns: 1fr 8fr; /* 1 parte navbar, 8 partes conteúdo */
+    height: 100vh;
+    overflow: hidden; /* Evita rolagem indesejada na página inteira */
+}
+
+.parentbox1 {
+    background-color: #f0f0f0; /* Cor de fundo para o navbar */
+    border-right: 1px solid #ccc; /* Delimitador do navbar */
+}
+
+.parentbox2 {
+    width: 100%; /* Garante que ocupe todo o espaço disponível */
+    overflow-y: auto; /* Permitir rolagem se o conteúdo for maior que a tela */
+    padding: 10px; /* Adiciona um pouco de espaço interno */
+}
+
+// /* Responsividade */
+// @media (max-width: 768px) {
+//     .parent {
+//         grid-template-columns: 1fr; /* Navbar ocupa toda a linha em telas pequenas */
+//         grid-template-rows: auto 1fr; /* Navbar em cima, conteúdo abaixo */
+//     }
+
+//     .parentbox1 {
+//         border-right: none; /* Remove a borda direita */
+//         border-bottom: 1px solid #ccc; /* Adiciona uma borda inferior */
+//     }
+// }

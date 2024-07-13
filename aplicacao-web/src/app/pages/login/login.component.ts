@@ -27,7 +27,7 @@ export class LoginComponent {
       next: token => {
         if(token){
           this.loginService.addToken(token);
-          this.router.navigate(['/home'])
+          this.router.navigate(['/home/read'])
         } else {
           alert('usuario ou senha incorretos')
         }
