@@ -1,0 +1,46 @@
+<div class="sidenav">
+    <div class="sideuser">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="" routerLink="read">
+        <h2>{{usuario.username}}</h2>
+        <p>{{usuario.role.name}}</p>
+    </div>
+    <div class="sidebuttons">
+        <ul>
+            <li class="nav-item"> 
+                <a href="#" class="nav-link activate">
+                   <img src="../../../../assets/icon/editar.png" alt="">
+                </a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="favorite" class="nav-link">
+                   <img src="../../../../assets/icon/coracao.png" alt="">
+                </a>
+            </li>
+            <li class="nav-item"> 
+                <a href="#" class="nav-link activate">
+                   <img src="../../../../assets/icon/marca-paginas.png" alt="">
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                   <img src="../../../../assets/icon/definicoes.png" alt="">
+                </a>
+            </li>
+            @if (loginService.hasPermission("ADMIN")) {
+                <li class="nav-item">
+                    <a routerLink="admin" class="nav-link">
+                        <img src="../../../../assets/icon/trancar.png" alt="">
+                    </a>
+                </li>
+            }
+            @if (loginService.hasPermission("USER")) {
+                <li class="nav-item">
+                    <a routerLink="ajuda" class="nav-link">
+                        <img src="../../../../assets/icon/ajuda.png" alt="">
+                    </a>
+                </li>
+            }
+            
+        </ul>  
+    </div>
+</div>

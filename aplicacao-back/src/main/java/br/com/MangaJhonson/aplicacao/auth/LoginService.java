@@ -1,6 +1,8 @@
 //AuthenticationService.java
 package br.com.MangaJhonson.aplicacao.auth;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -30,6 +32,10 @@ public class LoginService {
 		String jwtToken = jwtService.generateToken(user);
 		
 		return jwtToken;
+	}
+	
+	public List<Usuario> getUsuarios(){
+		return repository.findAll();
 	}
 
 }
