@@ -43,10 +43,11 @@ export class LoginService {
 
   hasPermission(role: string) {
     let user = this.jwtDecode() as Usuario;
-    if (user.role == role)
+    if (user.role.name === role) { // Ajuste para acessar o nome do papel
       return true;
-    else
+    } else {
       return false;
+    }
   }
 
   getUsuarioLogado() {
