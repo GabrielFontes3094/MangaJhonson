@@ -37,5 +37,15 @@ public class LoginService {
 	public List<Usuario> getUsuarios(){
 		return repository.findAll();
 	}
+	
+	public String deletarUsuario(Long id) {
+		this.repository.deleteById(id);
+		return "Usuario deletado!";
+	}
+	
+	public String salvarUsuario(Usuario usuario) {
+		this.repository.save(usuario);
+		return "Usuario salvo com sucesso";
+	}
 
 }

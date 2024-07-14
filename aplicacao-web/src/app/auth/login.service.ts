@@ -58,5 +58,8 @@ export class LoginService {
     return this.http.get<Usuario[]>(`${this.API}/usuarios`);
   }
 
+  deletarUsuario(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.API}/deletarUsuario/${id}`);
+  }
 
 }

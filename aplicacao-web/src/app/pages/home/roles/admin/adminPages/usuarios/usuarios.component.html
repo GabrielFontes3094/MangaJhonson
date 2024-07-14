@@ -1,8 +1,40 @@
+<button>Novo</button>
 <table>
-    <tr>
-        Usuario
-    </tr>
-    @for (usuario of usuarios; track $index) {
-        <td>{{usuario.username}}</td>
-    }
+    <thead>
+       <tr>
+        <td>ID</td>
+        <td>Usuario</td>
+        <td>Acesso</td>
+        <td></td>
+       </tr>
+    </thead>
+    <tbody>
+            @for (usuario of usuarios; track $index) {
+                <tr>
+                    <td>{{usuario.id}}</td>
+                    <td>{{usuario.username}}</td>
+                    <td>{{usuario.role.name}}</td>
+                    <td> 
+                        <button  mdbRipple (click)="edit(usuario)">Editar</button>
+                        <button  mdbRipple (click)="deletarUsuario(usuario)">Excluir</button>
+                    </td>
+                </tr>                
+            }
+    </tbody>
 </table>
+
+<ng-template #modalCarroDetalhe>
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="modalRef.close()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <app-usuarioedit [usuario]="usuarioEdit" (retorno)="retornoDetalhe($event)"></app-usuarioedit>
+      </div>
+</ng-template>
+
