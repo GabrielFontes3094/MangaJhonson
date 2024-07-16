@@ -1,1 +1,30 @@
-<p>usuarioedit works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 centralizar topo"> 
+            <div class="card">
+                <div class="card-body">
+                    <h3>Cadastrar Usuario</h3>
+                    <br>
+                    <div class="form-group">
+                        <label for="username">Nome</label>
+                        <input type="text" id="username" class="form-control" [(ngModel)]="usuario.username" />
+                    </div> 
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="text" id="password" class="form-control" [(ngModel)]="usuario.password" />
+                    </div>   
+                    <div class="form-group">
+                        <label for="role">Acesso</label>
+                        <select id="role" class="form-control" [(ngModel)]="usuario.role" >
+                            @for (role of roles; track $index) {
+                                <option [value]="role">{{ role.name }}</option>
+                            }
+                            
+                        </select>
+                    </div>     
+                    <button type="button" class="btn btn-primary btn-rounded" (click)="save()">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

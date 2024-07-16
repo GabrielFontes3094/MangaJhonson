@@ -14,9 +14,14 @@ import br.com.MangaJhonson.aplicacao.config.JwtServiceGenerator;
 public class LoginService {
 	
 	@Autowired
+	private RoleRepository loginRepository;
+	
+	@Autowired
 	private LoginRepository repository;
+	
 	@Autowired
 	private JwtServiceGenerator jwtService;
+	
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
@@ -46,6 +51,10 @@ public class LoginService {
 	public String salvarUsuario(Usuario usuario) {
 		this.repository.save(usuario);
 		return "Usuario salvo com sucesso";
+	}
+	
+	public List<Role> getRoles(){
+		return loginRepository.findAll();
 	}
 
 }

@@ -19,7 +19,7 @@ export class UsuariosComponent {
   role!: Role;
   usuarioEdit: Usuario = new Usuario(0, "", this.role);
 
-  @ViewChild('modalCarroDetalhe') modalUsuarioDetalhe!: TemplateRef<any>;
+  @ViewChild('modalUsuarioNovo') modalUsuarioNovo!: TemplateRef<any>;
   modalRef!: MdbModalRef<any>;
 
   constructor(private loginService: LoginService, private modalService: MdbModalService) {}
@@ -55,7 +55,7 @@ export class UsuariosComponent {
 
   edit(usuario: Usuario){
     this.usuarioEdit = Object.assign({}, usuario);
-    this.modalRef = this.modalService.open(this.modalUsuarioDetalhe);
+    this.modalRef = this.modalService.open(this.modalUsuarioNovo);
   }
 
   retornoDetalhe(usuario: Usuario){
@@ -67,5 +67,10 @@ export class UsuariosComponent {
       this.usuarios.push(usuario);
     }
     this.modalRef.close();
+  }
+
+  openModalNovo() {
+    this.usuarioEdit = new Usuario(0, "", new Role()); // Reset the usuarioEdit object
+    this.modalRef = this.modalService.open(this.modalUsuarioNovo);
   }
 }

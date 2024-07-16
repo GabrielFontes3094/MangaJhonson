@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { jwtDecode, JwtPayload } from "jwt-decode";
 import { Login } from './login';
 import { Usuario } from './usuario';
+import { Role } from './role';
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +61,14 @@ export class LoginService {
 
   deletarUsuario(id: number): Observable<void> {
     return this.http.delete<void>(`${this.API}/deletarUsuario/${id}`);
+  }
+
+  salvarUsuario(id: number, usuario: Usuario): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.API}/salvarUsuario/${id}`, usuario);
+  }
+
+  getRoles(): Observable<Role[]> {
+    return this.http.get<Role[]>(`${this.API}/roles`);
   }
 
 }
