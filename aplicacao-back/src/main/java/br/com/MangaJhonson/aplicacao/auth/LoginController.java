@@ -50,6 +50,16 @@ public class LoginController {
 		}
 	}
 	
+	@PostMapping("/salvarUsuario")
+	public ResponseEntity<String> deletarUsuario(@RequestBody Usuario usuario){
+		try {
+			 String mensagem = this.loginService.salvarUsuario(usuario);
+			 return new ResponseEntity<String>(mensagem, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
 	@DeleteMapping("/deletarUsuario/{id}")
 	public ResponseEntity<String> deletarUsuario(@PathVariable Long id){
 		try {
@@ -58,10 +68,9 @@ public class LoginController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
-		
 	}
 	
-	@PutMapping("/salvarUsuario/{id}")
+	@PutMapping("/atualizarUsuario/{id}")
 	public ResponseEntity<String> salvarUsuario(@PathVariable Long id, @RequestBody Usuario usuario){
 		try {
 			String menssagem = this.loginService.salvarUsuario(usuario);
