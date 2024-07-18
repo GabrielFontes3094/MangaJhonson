@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { jwtDecode, JwtPayload } from "jwt-decode";
@@ -63,8 +63,9 @@ export class LoginService {
     return this.http.delete<void>(`${this.API}/deletarUsuario/${id}`);
   }
 
-  salvarUsuario(id: number, usuario: Usuario): Observable<Usuario> {
-    return this.http.put<Usuario>(`${this.API}/salvarUsuario/${id}`, usuario);
+  salvarUsuario(usuario: Usuario): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post(`${this.API}/salvarUsuario`, usuario, { headers, responseType: 'text' });
   }
 
   getRoles(): Observable<Role[]> {

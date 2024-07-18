@@ -18,11 +18,13 @@ export class UsuarioeditComponent {
   role!: Role;
   roles: Role[] = [];
 
-  @Input('usuario') usuario: Usuario = new Usuario(0, "", this.role);
+  @Input('role') role2: Role = new Role(0, "");
+  @Input('usuario') usuario: Usuario = new Usuario(0, "", "", this.role2);
   @Output("retorno") retorno = new EventEmitter<any>();
 
   router = inject(ActivatedRoute);
   router2 = inject(Router)
+
 
   constructor(
     private route: ActivatedRoute,
@@ -46,11 +48,31 @@ export class UsuarioeditComponent {
   }
 
   findById(id: number){
-    let usuarioRetornado: Usuario = new Usuario(id , "", this.role)
+    let usuarioRetornado: Usuario = new Usuario(id ,"", "", this.role)
     this.usuario = usuarioRetornado;
   }
 
-  save() {
+  onRoleChange(roleUser: Role) {
+    this.usuario.role = roleUser;
+    console.log(roleUser)
   }
+
+  save() {
+    this.loginService.salvarUsuario(this.usuario).subscribe(
+      (response) => {
+        this.retorno.emit(response);
+        Swal.fire('Sucesso!', 'Usuário salvo com sucesso!', 'success').then(() => {
+          location.reload();
+        });
+       
+      },
+      (error) => {
+        Swal.fire('Erro!', 'Ocorreu um erro ao salvar o usuário.', 'error');
+        this.retorno.emit(error);
+      }
+    );
+  }
+
+
 
 }

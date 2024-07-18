@@ -17,7 +17,8 @@ export class UsuariosComponent {
 
   usuarios: Usuario[] = [];
   role!: Role;
-  usuarioEdit: Usuario = new Usuario(0, "", this.role);
+  usuarioRoleEdit: Role = new Role(0, "");
+  usuarioEdit: Usuario = new Usuario(0, "", "", this.usuarioRoleEdit);
 
   @ViewChild('modalUsuarioNovo') modalUsuarioNovo!: TemplateRef<any>;
   modalRef!: MdbModalRef<any>;
@@ -62,15 +63,12 @@ export class UsuariosComponent {
     if(usuario.id > 0){
       let indice = this.usuarios.findIndex(x => { return x.id == usuario.id });
       this.usuarios[indice] = usuario;
-    } else {
-      usuario.id = 55;
-      this.usuarios.push(usuario);
     }
     this.modalRef.close();
   }
 
   openModalNovo() {
-    this.usuarioEdit = new Usuario(0, "", new Role()); // Reset the usuarioEdit object
+    this.usuarioEdit = new Usuario(0, "", "",this.usuarioRoleEdit);
     this.modalRef = this.modalService.open(this.modalUsuarioNovo);
   }
 }

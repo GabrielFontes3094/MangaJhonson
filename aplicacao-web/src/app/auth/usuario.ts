@@ -6,9 +6,10 @@ export class Usuario {
   password!: string;
   role!: Role
 
-  constructor(id: number, nome: string, role: Role) {
+  constructor(id: number, nome: string, password: string, role: Role) {
     this.id = id;
     this.username = nome;
+    this.password = password;
     this.role = role;
   }
 }

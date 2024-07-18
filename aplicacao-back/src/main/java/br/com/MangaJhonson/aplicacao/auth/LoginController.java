@@ -51,7 +51,7 @@ public class LoginController {
 	}
 	
 	@PostMapping("/salvarUsuario")
-	public ResponseEntity<String> deletarUsuario(@RequestBody Usuario usuario){
+	public ResponseEntity<String> salvarUsuario(@RequestBody Usuario usuario){
 		try {
 			 String mensagem = this.loginService.salvarUsuario(usuario);
 			 return new ResponseEntity<String>(mensagem, HttpStatus.OK);

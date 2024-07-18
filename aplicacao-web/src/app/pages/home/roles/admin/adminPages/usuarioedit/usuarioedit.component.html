@@ -15,9 +15,9 @@
                     </div>   
                     <div class="form-group">
                         <label for="role">Acesso</label>
-                        <select id="role" class="form-control" [(ngModel)]="usuario.role" >
+                        <select id="role" class="form-control" [(ngModel)]="usuario.role" (ngModelChange)="onRoleChange($event)">
                             @for (role of roles; track $index) {
-                                <option [value]="role">{{ role.name }}</option>
+                                <option [ngValue]="role">{{ role.name }}</option>
                             }
                             
                         </select>
