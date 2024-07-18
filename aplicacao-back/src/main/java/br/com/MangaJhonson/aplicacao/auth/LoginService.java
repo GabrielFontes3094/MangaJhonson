@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.MangaJhonson.aplicacao.config.JwtServiceGenerator;
@@ -14,11 +15,19 @@ import br.com.MangaJhonson.aplicacao.config.JwtServiceGenerator;
 public class LoginService {
 	
 	@Autowired
+	private RoleRepository loginRepository;
+	
+	@Autowired
 	private LoginRepository repository;
+	
 	@Autowired
 	private JwtServiceGenerator jwtService;
+	
 	@Autowired
 	private AuthenticationManager authenticationManager;
+	
+	@Autowired
+    private PasswordEncoder passwordEncoder;
 
 
 	public String logar(Login login) {
@@ -36,6 +45,21 @@ public class LoginService {
 	
 	public List<Usuario> getUsuarios(){
 		return repository.findAll();
+	}
+	
+	public String deletarUsuario(Long id) {
+		this.repository.deleteById(id);
+		return "Usuario deletado!";
+	}
+	
+	public String salvarUsuario(Usuario usuario) {
+        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+		this.repository.save(usuario);
+		return "Usuario salvo!";
+	}
+	
+	public List<Role> getRoles(){
+		return loginRepository.findAll();
 	}
 
 }
