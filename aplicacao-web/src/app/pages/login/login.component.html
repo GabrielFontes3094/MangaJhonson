@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-4">
+        <div class="card text-center mt-4">
+          <div class="bg-image hover-overlay" mdbRipple rippleColor="light">
+            <img src="assets/img/logo.jpg" class="img-fluid" alt="Logo"/>
+            <a href="">
+              <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+            </a>
+          </div>
+          <div class="card-body">
+            <mdb-form-control>
+                <input mdbInput type="text" id="usuario" class="form-control" [(ngModel)]="login.username" (keyup.enter)="logar()"/>
+                <label mdbLabel class="form-label" for="usuario">Example label</label>
+            </mdb-form-control>
+            <br>
+            <mdb-form-control>
+                <input mdbInput type="password" id="senha" class="form-control" [(ngModel)]="login.password" (keyup.enter)="logar()"/>
+                <label mdbLabel class="form-label" for="senha">Example label</label>
+            </mdb-form-control>
+            <button mdbBtn color="primary" class="btn-block" (click)="logar()">Login</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <form action="" class="gustavo">oi</form>
+  
