@@ -1,10 +1,15 @@
 // box user
-
-.sidenav{
-    background-color: rgb(226, 171, 98);
+.sidenav {
+    background-color: #ec7301;
     height: 100%;
+    width: 11%; /* Defina uma largura fixa para a barra lateral */
     display: grid;
-    grid-template-rows: 1fr 3fr;
+    grid-template-rows: auto 1fr; /* Ajusta a altura da sideuser e sidebuttons */
+    position: fixed; /* Faz com que a barra lateral fique fixa na tela */
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow: auto; /* Adiciona uma barra de rolagem se o conteúdo exceder a altura da tela */
 }
 
 // sideuser
@@ -16,17 +21,14 @@
     flex-direction: column;
 }
 
-.sideuser img{
-    width: 50%;
-    height: 50%;
+.sideuser img {
+    width: 65%;
+    margin: 10%;
 }
 
-h2{
-    background-color: orangered;
-    padding: 5% 10%;
-    border-radius: 30px;
-    color: aliceblue;
-    font-size: 20px;
+p{
+    font-size: 1.5vw;
+    word-wrap: break-word;
 }
 
 // navegacao
@@ -39,15 +41,16 @@ h2{
 .sidebuttons ul {
     width: 100%;
     list-style: none;
-    padding: 10%;    
+    padding: 1vw;    
     text-align: center;
-    margin-bottom: 10%;
+    margin-bottom: 1vw;
 }
 
 .sidebuttons ul li {
-    margin-top: 30%;
+    margin-top: 30%; /* Ajuste a margem conforme necessário */
 }
 
 .sidebuttons ul img {
+
     width: 35%;
 }

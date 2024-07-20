@@ -1,11 +1,12 @@
-<button type="button" class="btn btn-primary" (click)="openModalNovo()">Novo</button>
 <table>
     <thead>
        <tr>
         <td>ID</td>
         <td>Usuario</td>
         <td>Acesso</td>
-        <td></td>
+        <td>
+          <button type="button" class="btn btn-success" (click)="openModalNovo()">Novo</button>
+        </td>
        </tr>
     </thead>
     <tbody>
@@ -15,8 +16,8 @@
                     <td>{{usuario.username}}</td>
                     <td>{{usuario.role.name}}</td>
                     <td> 
-                        <button  mdbRipple (click)="edit(usuario)">Editar</button>
-                        <button  mdbRipple (click)="deletarUsuario(usuario)">Excluir</button>
+                        <button  mdbRipple (click)="edit(usuario)" class="btn btn-primary">Editar</button>
+                        <button  mdbRipple (click)="deletarUsuario(usuario)" class="btn btn-danger">Excluir</button>
                     </td>
                 </tr>                
             }

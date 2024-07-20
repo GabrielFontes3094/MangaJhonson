@@ -33,12 +33,15 @@ export class UsuariosComponent {
 
   deletarUsuario(usuario: Usuario){
     Swal.fire({
-      title: 'Tem certeza que deseja deletar este registro?',
+      title: 'Tem certeza que deseja deletar este usuário?',
       icon: 'warning',
-      showConfirmButton: true,
-      showDenyButton: true,
-      cancelButtonText: 'Não',
+      showCancelButton: true,
       confirmButtonText: 'Deletar',
+      cancelButtonText: 'Não',
+      customClass: {
+        confirmButton: 'btn btn-danger',
+        cancelButton: 'btn btn-primary'
+      },
     }).then((result) => {
       if (result.isConfirmed) {
         this.loginService.deletarUsuario(usuario.id).subscribe(() => {

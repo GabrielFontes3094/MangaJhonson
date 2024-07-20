@@ -16,6 +16,21 @@
     padding: 10px; /* Adiciona um pouco de espaço interno */
 }
 
+#hamburguer{
+    width: 20px;
+    cursor: pointer;
+}
+
+.recuado {
+    transform: translateX(-100%);
+}
+
+.recuado2{
+    width: 100vw;
+    
+}
+
+
 // /* Responsividade */
 // @media (max-width: 768px) {
 //     .parent {
