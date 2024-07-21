@@ -61,5 +61,14 @@ public class LoginService {
 	public List<Role> getRoles(){
 		return loginRepository.findAll();
 	}
+	
+	public String atualizarUsuario(Long id, Role role) {
+	    Usuario usuario = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
+	    Role novaRole = loginRepository.findById(role.getId()).orElseThrow(() -> new IllegalArgumentException("Role não encontrada"));
+	    usuario.setRole(novaRole);
+	    repository.save(usuario);
+	    return "Role do usuário atualizada com sucesso!";
+	}
+
 
 }

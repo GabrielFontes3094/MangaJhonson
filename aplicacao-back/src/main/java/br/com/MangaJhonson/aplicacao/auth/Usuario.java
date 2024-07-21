@@ -27,6 +27,9 @@ public class Usuario implements UserDetails {
     private String username;
     private String password;
     
+	@ManyToOne
+    private Role role;
+    
     public Usuario() {}
 
     public Usuario(String username, String password, Role role) {
@@ -35,11 +38,6 @@ public class Usuario implements UserDetails {
 		this.password = password;
 		this.role = role;
 	}
-
-
-
-	@ManyToOne
-    private Role role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

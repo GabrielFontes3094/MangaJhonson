@@ -1,4 +1,4 @@
-import { Component, TemplateRef, ViewChild, inject } from '@angular/core';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { Usuario } from '../../../../../../auth/usuario';
 import { LoginService } from '../../../../../../auth/login.service';
 import Swal from 'sweetalert2';
@@ -9,29 +9,29 @@ import { UsuarioeditComponent } from '../usuarioedit/usuarioedit.component';
 @Component({
   selector: 'app-usuarios',
   standalone: true,
-  imports: [UsuarioeditComponent, MdbModalModule ],
+  imports: [UsuarioeditComponent, MdbModalModule],
   templateUrl: './usuarios.component.html',
-  styleUrl: './usuarios.component.scss'
+  styleUrls: ['./usuarios.component.scss']
 })
 export class UsuariosComponent {
 
   usuarios: Usuario[] = [];
-  role!: Role;
-  usuarioRoleEdit: Role = new Role(0, "");
-  usuarioEdit: Usuario = new Usuario(0, "", "", this.usuarioRoleEdit);
+  usuarioEdit: Usuario = new Usuario(0, "", "", new Role(0, ""));
 
   @ViewChild('modalUsuarioNovo') modalUsuarioNovo!: TemplateRef<any>;
   modalRef!: MdbModalRef<any>;
 
   constructor(private loginService: LoginService, private modalService: MdbModalService) {}
 
-  ngOnInit(){
-    this.loginService.getUsuarios().subscribe(data => {
-      this.usuarios = data;
-    });
+  ngOnInit() {
+    this.loadUsuarios();
   }
 
-  deletarUsuario(usuario: Usuario){
+  loadUsuarios() {
+    this.loginService.getUsuarios().subscribe(data => this.usuarios = data);
+  }
+
+  deletarUsuario(usuario: Usuario) {
     Swal.fire({
       title: 'Tem certeza que deseja deletar este usuário?',
       icon: 'warning',
@@ -41,37 +41,32 @@ export class UsuariosComponent {
       customClass: {
         confirmButton: 'btn btn-danger',
         cancelButton: 'btn btn-primary'
-      },
-    }).then((result) => {
+      }
+    }).then(result => {
       if (result.isConfirmed) {
         this.loginService.deletarUsuario(usuario.id).subscribe(() => {
           this.usuarios = this.usuarios.filter(u => u.id !== usuario.id);
-          Swal.fire({
-            title: 'Deletado com sucesso',
-            icon: 'success',
-            confirmButtonText: 'Ok'
-          });
+          Swal.fire('Deletado com sucesso', '', 'success');
         });
-        window.location.reload();
       }
     });
   }
 
-  edit(usuario: Usuario){
-    this.usuarioEdit = Object.assign({}, usuario);
+  edit(usuario: Usuario) {
+    this.usuarioEdit = { ...usuario };
     this.modalRef = this.modalService.open(this.modalUsuarioNovo);
   }
 
-  retornoDetalhe(usuario: Usuario){
-    if(usuario.id > 0){
-      let indice = this.usuarios.findIndex(x => { return x.id == usuario.id });
-      this.usuarios[indice] = usuario;
+  retornoDetalhe(usuario: Usuario) {
+    if (usuario.id > 0) {
+      const index = this.usuarios.findIndex(x => x.id === usuario.id);
+      this.usuarios[index] = usuario;
     }
     this.modalRef.close();
   }
 
   openModalNovo() {
-    this.usuarioEdit = new Usuario(0, "", "",this.usuarioRoleEdit);
+    this.usuarioEdit = new Usuario(0, "", "", new Role(0, ""));
     this.modalRef = this.modalService.open(this.modalUsuarioNovo);
   }
 }

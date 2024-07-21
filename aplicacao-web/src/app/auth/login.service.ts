@@ -72,4 +72,14 @@ export class LoginService {
     return this.http.get<Role[]>(`${this.API}/roles`);
   }
 
+  atualizarUsuario(id: number, role: Role): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.put(`${this.API}/atualizarUsuario/${id}`, role, { headers, responseType: 'text' });
+  }
+
+
+  getUserById(id: number): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.API}/usuario/${id}`);
+  }
+
 }

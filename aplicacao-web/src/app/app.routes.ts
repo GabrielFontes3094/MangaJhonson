@@ -5,7 +5,6 @@ import { loginGuard } from './auth/login.guard';
 import { ReadComponent } from './pages/home/homePages/read/read.component';
 import { FavoritesComponent } from './pages/home/homePages/favorites/favorites.component';
 import { AdminComponent } from './pages/home/roles/admin/admin/admin.component';
-import { CadastrosComponent } from './pages/home/roles/admin/adminPages/cadastros/cadastros.component';
 import { UsuariosComponent } from './pages/home/roles/admin/adminPages/usuarios/usuarios.component';
 
 export const routes: Routes = [

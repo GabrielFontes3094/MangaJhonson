@@ -71,14 +71,16 @@ public class LoginController {
 	}
 	
 	@PutMapping("/atualizarUsuario/{id}")
-	public ResponseEntity<String> salvarUsuario(@PathVariable Long id, @RequestBody Usuario usuario){
-		try {
-			String menssagem = this.loginService.salvarUsuario(usuario);
-			return new ResponseEntity<String>(menssagem, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-		}
+	public ResponseEntity<String> atualizarUsuario(@PathVariable Long id, @RequestBody Role role) {
+	    try {
+	        String mensagem = loginService.atualizarUsuario(id, role);
+	        return new ResponseEntity<>(mensagem, HttpStatus.OK);
+	    } catch (Exception e) {
+	        System.out.println(e.getMessage());
+	        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+	    }
 	}
+	
 	
 	@GetMapping("/roles")
 	public ResponseEntity<List<Role>> getRoles() {
